@@ -1,0 +1,56 @@
+.maincontainer {
+  
+  max-width: 500px;
+
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.titlecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+
+  
+  font-size: 35px;
+
+  color: white;
+}
+
+.taskbtn {
+  background-color: rgba(0, 0, 0, 0.05);
+  
+  color: white;
+  height: 35px;
+  border-width: 2px;
+  border-color: green;
+  border-style: solid;
+
+  cursor: pointer;
+}
+
+.taskbtn:active{
+  color: black;
+  background-color: green;
+}
+
+#tasktext {
+  border-radius: 100px;
+  border: solid 1px black;
+
+  width: 80%;
+  height: 30px;
+
+  margin-left: 10px;
+  margin-right: 10px;
+
+  text-indent: 15px;
+}

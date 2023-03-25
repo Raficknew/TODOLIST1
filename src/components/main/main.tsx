@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./main.css"
+import styles from "./main.module.css"
 import Task from "../task/task";
 import { nanoid } from 'nanoid'
 
@@ -19,8 +19,7 @@ const Main: React.FC = () => {
     setTask(event.target.value)
   }
 
-  function createTask(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function createTask() {
     const newTask: Task = {
       id: nanoid(),
       taskText: task,
@@ -30,14 +29,17 @@ const Main: React.FC = () => {
   }
 
   function deleteTask(id: string){
-    console.log(id)
-
     setTaskList(oldTaskList => oldTaskList.filter(oldTasks => oldTasks.id !== id))
-    
   }
 
-  function editTask(){
-    console.log("edytuje")
+  function editTask(id: string){
+    let editingText = prompt("Wpisz to co chcesz misiek")
+    
+    setTaskList((prevTaskList) => prevTaskList.map(
+      (t) => t.id === id ? 
+      { id: t.id , taskText: editingText ?? t.taskText } 
+      : t
+      ))
   }
 
 
@@ -46,7 +48,7 @@ const Main: React.FC = () => {
       <Task 
         key = {t.id}
         taskText = {t.taskText}
-        edit = {editTask}
+        edit = {() => editTask(t.id)}
         delete={() => deleteTask(t.id)}
         />
     )
@@ -54,21 +56,22 @@ const Main: React.FC = () => {
 
  
     return (
-      <div className="main-container">
-        <div className="title-container">
-               <p className="title">Todo List</p>
+      <div className={styles.maincontainer}>
+        <div className={styles.titlecontainer}>
+               <p className={styles.title}>Todo List</p>
         </div>
-        <form onSubmit={createTask}>
           <input 
             type="text" 
             name="task-text"
-            id="task-text" 
+            id={styles.tasktext} 
             value={task} 
             onChange={valOfText}
-            required
           />
-          <button className="task-btn">Add Task</button>
-        </form>
+          <button
+            onClick={createTask} 
+            className={styles.taskbtn}>
+            Add Task
+          </button>
         <hr />
         {taskElements}
       </div>

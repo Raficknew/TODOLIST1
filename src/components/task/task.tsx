@@ -1,16 +1,16 @@
 import React from "react";
-import "./task.css"
+import styles from "./task.module.css"
 import { AiFillEdit } from "react-icons/ai"
 import { AiFillDelete } from "react-icons/ai"
 
 
 const Task = (props: any) => {
   return (
-    <div className="task-container">
-      <div className="textVal">
-        <p>{props.taskText}</p>
+    <div className={styles.taskcontainer}>
+      <div className={styles.textVal}>
+        <p className={styles.text}>{props.taskText}</p>
       </div>
-      <div className="task-functionality">
+      <div className={styles.taskfunctionality }>
         <AiFillEdit
         style={
           {
